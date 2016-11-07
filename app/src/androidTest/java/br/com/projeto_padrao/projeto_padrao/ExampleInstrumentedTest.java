@@ -15,9 +15,7 @@ import br.com.projeto_padrao.projeto_padrao.api.API;
 import br.com.projeto_padrao.projeto_padrao.api.url.BolaoService;
 import br.com.projeto_padrao.projeto_padrao.modelo.Bolao;
 import retrofit2.Call;
-import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -40,9 +38,8 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void testar_request_get() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(API.URL).addConverterFactory(GsonConverterFactory.create()).build();
 
-        BolaoService bolaoService = retrofit.create(BolaoService.class);
+        BolaoService bolaoService = API.factoryRetrofit().create(BolaoService.class);
 
         assertNotNull(bolaoService);
 

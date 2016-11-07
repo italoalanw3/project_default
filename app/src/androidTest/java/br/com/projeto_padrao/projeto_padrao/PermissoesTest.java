@@ -7,12 +7,10 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
+import br.com.projeto_padrao.projeto_padrao.api.API;
 import br.com.projeto_padrao.projeto_padrao.api.url.BolaoService;
-import retrofit2.GsonConverterFactory;
-import retrofit2.Retrofit;
 
 import static junit.framework.Assert.fail;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Italo Alan on 06/11/2016.
@@ -24,11 +22,7 @@ public class PermissoesTest {
     @Test
     public void testarPermissaoRequest() {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://localhost:81/api/").addConverterFactory(GsonConverterFactory.create()).build();
-
-        BolaoService bolaoService = retrofit.create(BolaoService.class);
-
-        assertNotNull(bolaoService);
+        BolaoService bolaoService = API.factoryRetrofit().create(BolaoService.class);
 
         try {
             bolaoService.listBoloesAtivos().execute();
